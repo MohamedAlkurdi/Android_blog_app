@@ -39,10 +39,11 @@ public class Register extends AppCompatActivity {
     ProgressBar progressBar;
     TextView loginLink;
 
+
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+//         Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -63,6 +64,16 @@ public class Register extends AppCompatActivity {
         progressBar = findViewById(R.id.registration_progress_bar);
         loginLink = findViewById(R.id.login_link);
 
+
+        loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +81,7 @@ public class Register extends AppCompatActivity {
                 String email, password;
                 email = editEmail.getText().toString();
                 password = editPassword.getText().toString();
+
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(Register.this, "Email can not be empty.", Toast.LENGTH_LONG).show();
@@ -87,6 +99,9 @@ public class Register extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
+                                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                                    startActivity(intent);
+                                    finish();
                                     Toast.makeText(Register.this, "User registered successfully.",
                                             Toast.LENGTH_SHORT).show();
                                 } else {
@@ -98,14 +113,6 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        loginLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Login.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
 }

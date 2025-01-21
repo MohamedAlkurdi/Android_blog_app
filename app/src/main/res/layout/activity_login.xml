@@ -9,7 +9,6 @@
     android:gravity="center"
     tools:context=".Login">
 
-
     <TextView
         android:id="@+id/login_title"
         android:layout_width="197dp"
@@ -45,6 +44,14 @@
             android:layout_marginBottom="100px"
             android:hint="@string/password_hint" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ProgressBar
+        android:id="@+id/login_progress_bar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100px"
+        />
 
     <Button
         android:id="@+id/login_btn"

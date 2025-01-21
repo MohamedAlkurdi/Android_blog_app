@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,30 +15,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
-        <!--        android:theme="@style/Theme.BlogAppProject"-->
+
         <activity
             android:name=".Register"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
-            />
-        <!--            android:theme="@style/Theme.BlogAppProject"-->
+            android:windowSoftInputMode="adjustResize"/>
+
         <activity
             android:name=".Login"
             android:exported="true"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
-             >
-            <!--        android:theme="@style/Theme.BlogAppProject"-->
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
 
-        </activity>
     </application>
 
 </manifest>

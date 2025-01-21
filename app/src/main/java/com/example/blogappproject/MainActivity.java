@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }else{
             info.setText(user.getEmail().toString());
+            Toast.makeText(this, "dont mind me", Toast.LENGTH_SHORT).show();
+
         }
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {

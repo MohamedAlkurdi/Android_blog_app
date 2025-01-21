@@ -1,5 +1,6 @@
 package com.example.blogappproject;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -41,21 +42,22 @@ public class Login extends AppCompatActivity {
         }
     }
 
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_login);
         registrationLink = findViewById(R.id.registration_link);
         mAuth = FirebaseAuth.getInstance();
         editEmail = findViewById(R.id.email_login_input);
         editPassword = findViewById(R.id.password_login_input);
         loginBtn = findViewById(R.id.login_btn);
-        progressBar = findViewById(R.id.registration_progress_bar);
+        progressBar = findViewById(R.id.login_progress_bar);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(Login.this, "login button was clicked.", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.VISIBLE);
                 String email, password;
                 email = editEmail.getText().toString();
@@ -77,7 +79,6 @@ public class Login extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    //FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(Login.this, "Welcome!",
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
