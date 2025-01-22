@@ -27,6 +27,9 @@ import com.example.blogappproject.databinding.ActivityRegisterBinding;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
@@ -105,8 +108,10 @@ public class Register extends AppCompatActivity {
                                     Toast.makeText(Register.this, "User registered successfully.",
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(Register.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Log.w("SIGNUP_ERROR_BLYAT", "SignupFailure", task.getException());
+
+                                    Toast.makeText(Register.this, "Registration Failed.", Toast.LENGTH_LONG).show();
+
                                 }
                             }
                         });

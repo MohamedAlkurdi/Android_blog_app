@@ -20,6 +20,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
@@ -57,7 +60,6 @@ public class Login extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Login.this, "login button was clicked.", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.VISIBLE);
                 String email, password;
                 email = editEmail.getText().toString();
@@ -86,8 +88,10 @@ public class Login extends AppCompatActivity {
                                     finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(Login.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Log.w("LOGIN_ERROR_BLYAT", "Loginfailure", task.getException());
+
+                                    Toast.makeText(Login.this, "Login failed.", Toast.LENGTH_LONG).show();
+
                                 }
                             }
                         });
@@ -102,6 +106,7 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+
 
     }
 }
